@@ -16,7 +16,7 @@ const categories = [
 
 const categoriesTwo = [
     {
-        name : "trending",
+        slug : "trending",
         title: "Em Alta",
         path: `/trending/all/week?api_key=${API_KEY}&language=pt-BR`
     }
