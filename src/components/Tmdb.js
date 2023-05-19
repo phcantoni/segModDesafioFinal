@@ -28,9 +28,10 @@ const categoriesTwo = [
             try {
                 let url = `${BASE_URL}${path}`;
                 const response = await fetch(url);
-                return await response.json ();
+                const json = await response.json();
+                return json;
             } catch (error) {
-                console.log ("Error getMovies: ", error)            
+                console.log("Error getMovies: ", error);           
             } 
         }
         

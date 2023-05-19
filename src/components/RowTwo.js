@@ -76,7 +76,7 @@ function RowTwo({title, path}) {
             </DivCards>
         </MainDiv>
     </div>
-  )
+  );
 }
 
 export default RowTwo

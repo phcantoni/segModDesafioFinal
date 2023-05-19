@@ -98,7 +98,7 @@ function MainBanner() {
             const randomIndex = Math.floor(Math.random() * movies?.length);
             setMovie (movies[randomIndex]);            
         } catch (error) {
-            console.log ("MainBanner fecthRandomMovies error: ", error);
+            // console.log ("MainBanner fecthRandomMovies error: ", error);
             alert(`desculpe, você teve um erro de requisição ${error}`);
         }
     };
@@ -118,7 +118,7 @@ function MainBanner() {
     <MainDivBanner className="MainBannerBox" style={{
         backgroundSize: "cover",
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-        // ------------------- https://image.tmdb.org/t/p/w500/${item.backdrop_path}
+        // ------------------ https://image.tmdb.org/t/p/w500/${item.backdrop_path}
         backgroundPosition: "center",
     }}>
         <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
