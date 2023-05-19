@@ -1,10 +1,12 @@
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { createGlobalStyle } from "styled-components";
-import List from "./components/Lists";
+// import List from "./components/Lists";
 import styled from "styled-components";
-import MainBanner from "./components/MainBanner";
+// import MainBanner from "./components/MainBanner";
+// import HomeFilms from "./pages/HomeFilms";
+import { Outlet } from "react-router-dom";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -22,9 +24,12 @@ const Div = styled.div`
 function App () {
   return (
     <Div className="App">
+      {/* <Navbar /> */}
+      {/* <MainBanner /> */}
+      {/* <List /> */}
+      {/* <Outlet /> */}
       <Navbar />
-      <MainBanner />
-      <List />
+      {/* <HomeFilms /> */}
       <Outlet />
       <GlobalStyle />
     </Div>

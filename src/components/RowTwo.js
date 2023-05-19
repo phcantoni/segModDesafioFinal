@@ -69,7 +69,7 @@ function RowTwo({title, path}) {
                     return (
                         <div>
                             <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
-                            <h2>{movie.title}</h2>
+                            <h2>{movie.title || movie.name || movie.original_name}</h2>
                         </div>
                     );
                 })}

@@ -45,7 +45,10 @@ function Row({title, path}) {
             {movies.length === 0 && <p>Carregando...</p>}
             {movies?.map((movie) => {
                 return (
-                    <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
+                    <div>
+                        <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
+                        <h2>{movie.title || movie.name || movie.original_name}</h2>
+                    </div>
                 );
             })}
         </DivCards>

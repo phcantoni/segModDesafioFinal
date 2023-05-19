@@ -54,7 +54,7 @@ function Navbar() {
             <img src={logo} alt=""></img>
         </FigureLogo>
         <DivOne>
-            <button>Séries</button>
+            <button><Link to="/homeseries">Séries</Link></button>
             <button><Link to="/">Filmes</Link></button>
         </DivOne>
         <DivTwo>

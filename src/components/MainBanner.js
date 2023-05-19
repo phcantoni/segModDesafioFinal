@@ -95,7 +95,7 @@ function MainBanner() {
 
             const data = await getMovies(categoriesTwo.path); 
             const movies = data?.results;
-            const randomIndex = Math.floor(Math.random() * movies.length);
+            const randomIndex = Math.floor(Math.random() * movies?.length);
             setMovie (movies[randomIndex]);            
         } catch (error) {
             console.log ("MainBanner fecthRandomMovies error: ", error);
@@ -107,7 +107,7 @@ function MainBanner() {
         fetchRandomMovie();
     }, []);
 
-    let yearMovie = new Date(movie.release_date);
+    // let firstDate = new Date(movie.release_date);
     let genres = [];
     for(let i in movie.genres) {
         genres.push( movie.genres[i].name );
@@ -123,7 +123,8 @@ function MainBanner() {
     }}>
         <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
         <div>
-            <h3>{ movie?.runtime }</h3> | <h3>{ genres.join(", ") }</h3> | <h3>{ yearMovie.getFullYear() }</h3>
+            <h3>{ movie?.runtime }</h3> | <h3>{ genres.join(", ") }</h3> | <h3>{ movie?.release_date }</h3>
+            {/* <h3>{ firstDate.getFullYear() }</h3> */}
         </div>
         <div>
             <FaStar /> | { movie?.vote_average } | <FaImdb />

@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Films from './pages/Films';
+import HomeFilms from './pages/HomeFilms';
 import Movie from './pages/Movie';
 import SearchFilms from './pages/SearchFilms';
+import HomeSeries from "./pages/HomeSeries";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<App />}>
-          <Route path="/" element={<Films />}/>
+          <Route path="/" element={<HomeFilms />}/>
           <Route path="/movie/:id" element={<Movie />}/>
           <Route path="/searchfilms" element={<SearchFilms />}/>
+          <Route path="/homeseries" element={<HomeSeries />}/>
         </Route>
       </Routes>
     </BrowserRouter>
@@ -27,7 +29,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 // reportWebVitals();
 
 
-//<Route path="series" element={<Series />}/>
 
 //<Route path="serie/:id" element={<Serie />}/> 
 
