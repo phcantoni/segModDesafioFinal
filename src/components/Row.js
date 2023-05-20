@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getMovies } from "./Tmdb";
 import styled from "styled-components";
+import Carousel, { consts } from "react-elastic-carousel";
 
 const DivCards = styled.div`
     display: flex;
@@ -43,6 +44,14 @@ function Row({title, path}) {
         <CategTitle className="rowTitle">{title}</CategTitle>
         <DivCards className="rowCards">
             {movies.length === 0 && <p>Carregando...</p>}
+            
+            <Carousel
+                itemsToScroll={3}
+                itemsToShow={5}
+                // enableAutoPlay autoPlaySpeed={2000}
+                itemPadding={[30, 30]}
+                // itemPosition={consts.END} 
+                >
             {movies?.map((movie) => {
                 return (
                     <div>
@@ -51,6 +60,7 @@ function Row({title, path}) {
                     </div>
                 );
             })}
+            </Carousel>    
         </DivCards>
     </div>
   )

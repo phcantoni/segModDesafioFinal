@@ -1,6 +1,7 @@
 const API_KEY = "5b481d7af8306d27b48eede041e4328c";
 const BASE_URL = "https://api.themoviedb.org/3";
 
+
 // Ultimos lançamentos
 //Em alta
 

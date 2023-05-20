@@ -5,7 +5,7 @@ import styled from "styled-components";
 const MainDiv = styled.div`
 
     width: 100%;
-    height: 250vh;
+    height: 300vh;
     border: hotpink solid;
 
 `
