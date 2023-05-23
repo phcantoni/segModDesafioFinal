@@ -54,6 +54,13 @@ const DivCards = styled.div`
             max-width: 100%;
             width: 15vw;
             height: 50vh;
+            margin-bottom: 0.7em;
+
+            :hover {
+                cursor: pointer;
+                transform: scale(1.03);
+                transition: 0.4s;
+            }
         }
 
         h2 {
@@ -78,6 +85,7 @@ const DivPages = styled.div`
         ul {
             display: flex;
             justify-content: space-between;
+            align-items: flex-end;
             width: 28vw;
             // border: blue solid;
         }
@@ -101,8 +109,15 @@ const DivPages = styled.div`
                 display: flex;
                 align-items: flex-end;
                 width: 1.2em;
+                height: 2px;
                 border-radius: 0px;
                 border: none;
+            }
+
+            :hover {
+                cursor: pointer;
+                background-color: rgba(211, 211, 211, 0.3);
+                transition: 0.3s;
             }
 
     }

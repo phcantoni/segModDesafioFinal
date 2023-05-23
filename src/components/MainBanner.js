@@ -72,19 +72,115 @@
 import React, { useEffect, useState } from "react";
 import { getMovies, categoriesTwo } from "./Tmdb";
 import styled from "styled-components";
-import { FaPlay, FaFilm, FaImdb, FaStar } from "react-icons/fa";
+import { FaPlay, FaFilm, FaStar } from "react-icons/fa";
+import Imdb from "./assets/Imdb.png";
+import Header from "./Header";
 
 
 const MainDivBanner = styled.div`
     width: 100%;
-    height: 90vh;
-    border: blue solid;
+    height: 100vh;
+    // border: blue solid;
 `
 
 const BackBlack = styled.section`
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: inherit;
     height: inherit;
-    background: linear-gradient(to top, #000000 , transparent);
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: inherit;
+            height: inherit;
+            background: linear-gradient(to top, #000000 , transparent);
+            // border: red solid;   
+        }
+        section h1 {
+            width: 80vw;
+            font-size: 27px;
+            // border: yellow solid;
+        }
+
+        section div {
+            display: flex;
+            align-items: center;
+            width: 80vw;
+            // border: green solid;
+
+                :last-of-type {
+                    height: 14vh;
+                }
+        }
+
+        section h3 {
+            font-size: 10px;
+            // border: hotpink solid;
+        }
+
+        section h4 {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 6vw;
+            font-size: 18px;
+            font-weight: 400;
+            // border: tomato solid;
+        }
+
+        section span {
+            font-size: 10px;
+            padding-bottom: 1.5px;
+        }
+
+        section p {
+            width: 80vw;
+            padding-right: 40%;
+            // border: aqua solid;
+        }
+
+        section button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 14vw;
+            height: 7.5vh;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #FFFFFF;
+            background-color: #D53A00;
+            gap: 0.5em;
+            margin-right: 1em;
+            border-radius: 30px;
+            border: none;
+
+                :hover {
+                    cursor: pointer;
+                    background-color: #aa3500;
+                    transition: 0.6s;
+                }
+
+                :last-of-type {
+                width: 13vw;
+                background-color: #717171;
+
+                :hover {
+                    cursor: pointer;
+                    background-color: #4F4F4F;
+                    transition: 0.6s;
+                }
+            }
+
+            // :hover {
+            //     color: 
+            // }
+        }
 `
 
 
@@ -135,18 +231,28 @@ function MainBanner() {
         backgroundPosition: "center",
     }}>
         <BackBlack>
-            <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
-            <div>
-                <h3>{ movie?.runtime }</h3> | <h3>{ genres.join(", ") || genresId.join(", ") }</h3> | <h3>{ firstDate.getFullYear() || firstDateTwo.getFullYear() }</h3>
-            </div>
-            <div>
-                <FaStar /> { movie?.vote_average }<span>/10</span> <FaImdb />
-            </div>
-            <p>{ movie?.overview }</p>
-            <div>
-                <button> <FaPlay /> | Assistir Agora </button>
-                <button> <FaFilm /> | Trailer </button>
-            </div>
+        <Header />
+            <section>
+                <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
+                <div>
+                    <h3>Duração: { movie?.runtime }</h3> | <h3>Gênero(s): { genres.join(", ") || genresId.join(", ") }</h3> | <h3>{ firstDate.getFullYear() || firstDateTwo.getFullYear() }</h3>
+                </div>
+                <div>
+                    <FaStar style={{
+                        width: "2vw",
+                        height: "4vh",
+                        color: "#f3cd32"
+                    }} /> <h4>{ movie?.vote_average }<span>/10</span></h4> <img src={Imdb} alt="Logo Imdb"/>
+                </div>
+                <p>{ movie?.overview }</p>
+                <div>
+                    <button> <FaPlay /> Assistir Agora </button>
+                    <button> <FaFilm style={{
+                        width: "2vw",
+                        height: "4vh"
+                    }}/> Trailer </button>
+                </div>
+            </section>
         </BackBlack>
     </MainDivBanner>
   )

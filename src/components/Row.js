@@ -40,6 +40,13 @@ const DivCards = styled.div`
             max-width: 100%;
             width: 15vw;
             height: 50vh;
+            margin-bottom: 0.7em;
+
+            :hover {
+                cursor: pointer;
+                transform: scale(1.03);
+                transition: 0.4s;
+            }
         }
 
         h2 {

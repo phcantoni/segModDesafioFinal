@@ -12,18 +12,30 @@ const NavCateg = styled.nav`
           justify-content: space-between;
           align-items: center;
           width: 83vw;
-          height: 15vh;
+          height: 20vh;
           font-size: 16px;
+          // padding-top: 2em;
           // border: aqua solid;
         }
 
         li {
           list-style: none;
+
+          :hover {
+              cursor: pointer;
+              transform: scale(1.1);
+              color: #717171;
+          }
         }
 
         button {
           background: transparent;
           border: none;
+
+          :hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
         }
 `
 
@@ -41,8 +53,8 @@ function Navbar() {
                 <li>Fantasia</li>
                 <li>Família</li>
                 <button><BiSearchAlt2 style={{
-                  width: "3.2vw",
-                  height: "6.4vh",
+                  width: "2.5vw",
+                  height: "5vh",
                   color: "white",
                   // border: "yellow solid"
                   }}/></button>
