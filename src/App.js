@@ -1,6 +1,6 @@
 // import { Outlet } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
 // import List from "./components/Lists";
 import styled from "styled-components";
@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 const Div = styled.div`
+  font-family: 'Open Sans', sans-serif;
   color: white;
   background-color: #000000;
 `
@@ -28,7 +29,7 @@ function App () {
       {/* <MainBanner /> */}
       {/* <List /> */}
       {/* <Outlet /> */}
-      <Navbar />
+      <Header />
       {/* <HomeFilms /> */}
       <Outlet />
       <GlobalStyle />
@@ -37,12 +38,3 @@ function App () {
 }
 
 export default App;
-
-      // <nav>
-      //   <h1>
-      //     <Link to="films">Filmes</Link>
-      //   </h1>
-      //   <Link to="movie/1">Movie</Link>
-      //   <Link to="searchfilms">SearchFilms</Link>
-      // </nav>
-      // <p>Olá</p>

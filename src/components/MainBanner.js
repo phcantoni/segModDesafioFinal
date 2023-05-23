@@ -73,15 +73,21 @@ import React, { useEffect, useState } from "react";
 import { getMovies, categoriesTwo } from "./Tmdb";
 import styled from "styled-components";
 import { FaPlay, FaFilm, FaImdb, FaStar } from "react-icons/fa";
-// import { API_KEY } from "./Tmdb"
 
 
 const MainDivBanner = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 90vh;
     border: blue solid;
-
 `
+
+const BackBlack = styled.section`
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to top, #000000 , transparent);
+`
+
+
 
 function MainBanner() {
 
@@ -89,16 +95,17 @@ function MainBanner() {
 
     const fetchRandomMovie = async () => {
         try {
-            // const trendingCategory = categoriesTwo.find (
-            //     (category) => category.name === "trending"
-            // );
+            const trendingCategory = categoriesTwo.find (
+                (categoryTwo) => categoryTwo.slug === "trending"
+            );
 
-            const data = await getMovies(categoriesTwo.path); 
+            const data = await getMovies(trendingCategory.path); 
             const movies = data?.results;
             const randomIndex = Math.floor(Math.random() * movies?.length);
-            setMovie (movies[randomIndex]);            
+            setMovie (movies[randomIndex]);
+            console.log(movies)
         } catch (error) {
-            // console.log ("MainBanner fecthRandomMovies error: ", error);
+            console.log ("MainBanner fecthRandomMovies error: ", error);
             alert(`desculpe, você teve um erro de requisição ${error}`);
         }
     };
@@ -107,34 +114,40 @@ function MainBanner() {
         fetchRandomMovie();
     }, []);
 
-    // let firstDate = new Date(movie.release_date);
+    let firstDate = new Date(movie.first_air_date);
+    let firstDateTwo = new Date(movie.release_date);
+    
     let genres = [];
     for(let i in movie.genres) {
         genres.push( movie.genres[i].name );
     }
+    let genresId = [];
+    for(let i in movie.genres) {
+        genres.push( movie.genre_ids[i].name );
+    }
+
 
 
   return (
     <MainDivBanner className="MainBannerBox" style={{
         backgroundSize: "cover",
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-        // ------------------ https://image.tmdb.org/t/p/w500/${item.backdrop_path}
         backgroundPosition: "center",
     }}>
-        <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
-        <div>
-            <h3>{ movie?.runtime }</h3> | <h3>{ genres.join(", ") }</h3> | <h3>{ movie?.release_date }</h3>
-            {/* <h3>{ firstDate.getFullYear() }</h3> */}
-        </div>
-        <div>
-            <FaStar /> | { movie?.vote_average } | <FaImdb />
-        </div>
-        <p>{ movie?.overview }</p>
-        <div>
-            <button> <FaPlay /> | Assistir Agora </button>
-            <button> <FaFilm /> | Trailer </button>
-        </div>
-        MainBanner
+        <BackBlack>
+            <h1>{ movie?.title || movie?.name || movie?.original_name }</h1>
+            <div>
+                <h3>{ movie?.runtime }</h3> | <h3>{ genres.join(", ") || genresId.join(", ") }</h3> | <h3>{ firstDate.getFullYear() || firstDateTwo.getFullYear() }</h3>
+            </div>
+            <div>
+                <FaStar /> { movie?.vote_average }<span>/10</span> <FaImdb />
+            </div>
+            <p>{ movie?.overview }</p>
+            <div>
+                <button> <FaPlay /> | Assistir Agora </button>
+                <button> <FaFilm /> | Trailer </button>
+            </div>
+        </BackBlack>
     </MainDivBanner>
   )
 }

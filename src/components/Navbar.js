@@ -1,76 +1,55 @@
-import { Link } from "react-router-dom";
+import React from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import styled from "styled-components";
-import logo from "./assets/logoDel.png";
 
-const Nav = styled.nav `
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    height: 10vh;
-    font-family: "Open Sans", sans-serif;
-    background-color: gray;
-    border: red solid;
-`
-
-const FigureLogo = styled.figure `
-    display: flex;
-    align-items: center;
-    width: 33vw;
-    height: 100%;
-    padding-left: 1.2em;
-    border: blue solid;
-
-        img {
-            width: 7vw;
-            height: 6vh;
-        }
-`
-
-const DivOne = styled.div `
+const NavCateg = styled.nav`
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 33vw;
-    height: 100%;
-    border: green solid;
-`
+    // border: blue solid;
 
-const DivTwo = styled.div `
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1.5em;
-    width: 33vw;
-    height: 100%;
-    padding-right: 1.2em;
-    border: green solid;
+        ul {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 83vw;
+          height: 15vh;
+          font-size: 16px;
+          // border: aqua solid;
+        }
+
+        li {
+          list-style: none;
+        }
+
+        button {
+          background: transparent;
+          border: none;
+        }
 `
 
 function Navbar() {
   return (
-    <Nav id="Navbar">
-        <FigureLogo>
-            <img src={logo} alt=""></img>
-        </FigureLogo>
-        <DivOne>
-            <button><Link to="/homeseries">Séries</Link></button>
-            <button><Link to="/">Filmes</Link></button>
-        </DivOne>
-        <DivTwo>
-            <div>
-                <input type="text" placeholder="Buscar filme..."/>
-                <button><BiSearchAlt2 /></button>
-            </div>
-            <p>Filtro</p>
-            <p>Login</p>
-        </DivTwo>
-    </Nav>
+    <div>
+        <NavCateg>
+            <ul>
+                <li>Popular</li>
+                <li>Drama</li>
+                <li>Ação</li>
+                <li>Aventura</li>
+                <li>Comédia</li>
+                <li>Crime</li>
+                <li>Fantasia</li>
+                <li>Família</li>
+                <button><BiSearchAlt2 style={{
+                  width: "3.2vw",
+                  height: "6.4vh",
+                  color: "white",
+                  // border: "yellow solid"
+                  }}/></button>
+            </ul>
+        </NavCateg>
+    </div>
   )
 }
 
 export default Navbar
-
-
-//<Link to="/Movie/1">MOVIE</Link>
-//<Link to="/SearchFilms">SEARCHFILMS</Link>

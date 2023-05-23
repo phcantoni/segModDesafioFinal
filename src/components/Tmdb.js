@@ -36,6 +36,31 @@ const categoriesTwo = [
             } 
         }
         
+        export const getMoviesInfo = async (movieId, type) => {
+            let info = {};
+
+                if(movieId) {
+                    switch (type) {
+                        case "movie":
+                            
+                            info = await getMovies(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`);
+
+                            break;
+                        case "tv":
+
+                            info = await getMovies(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`);
+
+                            break;                    
+                        default:
+
+                            info = null;
+
+                            break;
+                    }
+                }
+
+            return info;
+        }
 
 
 export {categories, categoriesTwo, API_KEY};
