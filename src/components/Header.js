@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import styled from "styled-components";
 import logo from "./assets/logoDel.png";
+import { useState } from "react";
 
 const Nav = styled.nav `
     display: flex;
@@ -14,7 +15,6 @@ const Nav = styled.nav `
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
     z-index: 999;
-    // border: red solid;
 `
 
 const FigureLogo = styled.figure `
@@ -23,7 +23,6 @@ const FigureLogo = styled.figure `
     width: 33vw;
     height: 100%;
     padding-left: 1.2em;
-    // border: blue solid;
 
         img {
             width: 7vw;
@@ -37,28 +36,48 @@ const DivOne = styled.div `
     align-items: center;
     width: 33vw;
     height: 100%;
-    // border: green solid;
 
-        button {
+        .btnSeries {
             width: 8vw;
             height: 6vh;
-            font-size: 14px;
+            font-size: 15px;
+            color: #F6F6F6;
             background: transparent;
-            border: none;
-        }
-
-        button:last-of-type {
-            width: 8vw;
-            height: 6vh;
-            background-color: grey;
             border-radius: 30px;
             border: none;
-            box-shadow: dimgrey 1.5px 1.5px;
+
+                :hover {
+                    cursor: pointer;
+                    box-shadow: dimgrey 1.5px 1.5px;
+                }
         }
 
-        .LinkTag {
+        .btnFilms {
+            width: 8vw;
+            height: 6vh;
+            font-size: 15px;
             color: #F6F6F6;
+            background: transparent;
+            border-radius: 30px;
+            border: none;
+            
+            :hover {
+                cursor: pointer;
+                box-shadow: dimgrey 1.5px 1.5px;
+            }
+        }
+
+        .LinkTagBtn {
             text-decoration: none;
+            border-radius: 30px;
+            // border: white solid 1px;
+
+            :hover {
+                cursor: pointer;
+                background-color: dimgray;
+                transition: 0.4s;
+                border: none;
+            }
         }
 `
 
@@ -70,29 +89,29 @@ const DivTwo = styled.div `
     width: 33vw;
     height: 100%;
     padding-right: 1.2em;
-    // border: green solid;
 
-        div {
+        form {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             width: 16vw;
             height: 100%;
             gap: 0.5em;
-            // border: green solid;
         }
 
         input {
             width: 1px;
             height: 4vh;
+            color: white;
             opacity: 0.01;
             background: transparent;
             padding-left: 0.5em;
-            border: #717171 solid 1px;
+            border: white solid 1px;
             border-radius: 30px;
+            
         }
-
-        div:hover input {
+        
+        form:hover input {
             width: 13vw;
             opacity: 1;
             transition: 1s;
@@ -107,7 +126,6 @@ const DivTwo = styled.div `
 
         p {
             font-size: 14px;
-            // border: blue solid;
 
                 :hover {
                     cursor: pointer;
@@ -115,30 +133,52 @@ const DivTwo = styled.div `
                     color: darkgrey;
                 }
         }
+
+        .LinkTagP {
+            color: white;
+            text-decoration: none;
+
+                :hover {
+                    cursor: pointer;
+                    transform: scale(1.1);
+                    color: darkgrey;
+        }
 `
 
 function Navbar() {
+
+    const [search, setSearch] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if(!search) return
+
+        navigate(`/searchfilms?q=${search}`);
+        setSearch("");
+    }
+
   return (
     <Nav id="Navbar">
         <FigureLogo>
             <img src={logo} alt=""></img>
         </FigureLogo>
         <DivOne>
-            <button><Link className="LinkTag" to="/homeseries">Séries</Link></button>
-            <button><Link className="LinkTag" to="/">Filmes</Link></button>
+            <Link className="LinkTagBtn" to="/homeseries"><button className="btnSeries">Séries</button></Link>
+            <Link className="LinkTagBtn" to="/"><button className="btnFilms">Filmes</button></Link>
         </DivOne>
         <DivTwo>
-            <div>
-                <input type="text" placeholder="Buscar filme..."/>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Buscar filme..." onChange={(e) => setSearch(e.target.value)} value={search}/>
                 <button><BiSearchAlt2 className="searchIcon" style={{
                   width: "2vw",
                   height: "4vh",
                   color: "white",
-                  // border: "yellow solid"
                   }}/></button>
-            </div>
+            </form>
             <p>Filtro</p>
-            <p>Login</p>
+            <Link className="LinkTagP" to="/login"><p>Login</p></Link>
         </DivTwo>
     </Nav>
   )
@@ -147,5 +187,3 @@ function Navbar() {
 export default Navbar
 
 
-//<Link to="/Movie/1">MOVIE</Link>
-//<Link to="/SearchFilms">SEARCHFILMS</Link>

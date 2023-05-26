@@ -1,17 +1,41 @@
-import MainBanner from "../components/MainBanner";
+import MainBannerMovies from "../components/MainBannerMovies";
 import List from "../components/Lists";
-// import Navbar from "./Navbar";
-// import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
+import React, {useEffect, useState} from "react";
+import TmdbTwo from "../components/TmdbTwo";
 
 
 function HomeFilms() {
+
+
+  const [featureData, setFeatureData] = useState (null);
+
+useEffect(() => {
+  const loadAll = async () => {
+    let list = await TmdbTwo.getHomeList();
+
+    let trending = list.filter(i=>i.slug === "trending");
+    let randomChosen = Math.floor(Math.random() * (trending[0].path.results.length - 1));
+    let chosen = trending[0].path.results[randomChosen];
+    let chosenInfo = await TmdbTwo.getMovieInfo(chosen.id, 'movie');
+    setFeatureData(chosenInfo);
+  }
+
+  loadAll();
+}, [])
+
+
   return (
     <div>
-      {/* <Navbar /> */}
-      <MainBanner />
+      <section>
+        <Header />
+      </section>
+      <section>
+          {featureData &&
+          <MainBannerMovies item={featureData} />}
+      </section>
       <List />
-      {/* <Outlet /> */}
     </div>
   )
 }

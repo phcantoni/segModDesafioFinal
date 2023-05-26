@@ -1,22 +1,43 @@
-import React from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
+import Lists from "../components/Lists"
 
-const MainDiv = styled.div`
 
-    display: flex;
-    align-items: space-between;
-    width: 100vw;
-    height: 100vh;
+import React, {useEffect, useState} from "react";
+import TmdbTwo from "../components/TmdbTwo";
+import MainBannerSeries from "../components/MainBannerSeries";
 
-`
+
 
 function HomeSeries() {
+
+const [featureData, setFeatureData] = useState (null);
+
+useEffect(() => {
+  const loadAll = async () => {
+    let list = await TmdbTwo.getHomeList();
+
+    let news = list.filter(i=>i.slug === "news");
+    let randomChosen = Math.floor(Math.random() * (news[0].path.results.length - 1));
+    let chosen = news[0].path.results[randomChosen];
+    let chosenInfo = await TmdbTwo.getMovieInfo(chosen.id, 'tv');
+    setFeatureData(chosenInfo);
+  }
+
+  loadAll();
+}, [])
+
+
   return (
-    <MainDiv>
-    <Header />
-      <p>HomeSeries</p>
-    </MainDiv>
+    <div>
+        <section>
+          <Header />
+        </section>
+        <section>
+          {featureData &&
+          <MainBannerSeries item={featureData} />}
+        </section>
+        <Lists />
+    </div>
   )
 }
 

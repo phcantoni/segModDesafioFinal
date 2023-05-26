@@ -5,7 +5,6 @@ import styled from "styled-components";
 const NavCateg = styled.nav`
     display: flex;
     justify-content: center;
-    // border: blue solid;
 
         ul {
           display: flex;
@@ -14,8 +13,6 @@ const NavCateg = styled.nav`
           width: 83vw;
           height: 20vh;
           font-size: 16px;
-          // padding-top: 2em;
-          // border: aqua solid;
         }
 
         li {
@@ -56,7 +53,6 @@ function Navbar() {
                   width: "2.5vw",
                   height: "5vh",
                   color: "white",
-                  // border: "yellow solid"
                   }}/></button>
             </ul>
         </NavCateg>

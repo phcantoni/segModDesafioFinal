@@ -24,7 +24,6 @@ const categoriesTwo = [
 ]
 
 
-
         export const getMovies = async (path) => {
             try {
                 let url = `${BASE_URL}${path}`;
@@ -32,36 +31,13 @@ const categoriesTwo = [
                 const json = await response.json();
                 return json;
             } catch (error) {
-                console.log("Error getMovies: ", error);           
+                console.log("Error getMovies: ", error);
+                alert(`desculpe, você teve um erro de requisição do GETMOVIES ${error}`);       
             } 
         }
         
-        export const getMoviesInfo = async (movieId, type) => {
-            let info = {};
-
-                if(movieId) {
-                    switch (type) {
-                        case "movie":
-                            
-                            info = await getMovies(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`);
-
-                            break;
-                        case "tv":
-
-                            info = await getMovies(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`);
-
-                            break;                    
-                        default:
-
-                            info = null;
-
-                            break;
-                    }
-                }
-
-            return info;
-        }
+       
 
 
 export {categories, categoriesTwo, API_KEY};
-        
+

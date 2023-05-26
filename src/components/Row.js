@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getMovies } from "./Tmdb";
 import styled from "styled-components";
-import Carousel, { consts } from "react-elastic-carousel";
+import Carousel from "react-elastic-carousel";
 
 const ConteinerRow = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border: aqua solid;
 `
 
 const CategTitle = styled.h2`
@@ -15,7 +14,6 @@ const CategTitle = styled.h2`
     align-items: flex-end;
     width: 83vw;
     height: 10vh;
-    // border: red solid;
 `
 
 const DivCards = styled.div`
@@ -24,7 +22,6 @@ const DivCards = styled.div`
     align-items: center;
     height: 80vh;
     overflow: hidden;
-    // border: green solid;
     
         section {
             display: flex;
@@ -33,7 +30,6 @@ const DivCards = styled.div`
             width: 17vw;
             height: 70vh;
             padding-top: 1em;
-            // border: yellow solid;
         }
 
         img {
@@ -53,7 +49,6 @@ const DivCards = styled.div`
             width: 15vw;
             font-size: 12px;
             paddin-top: 1em;
-            // border: tomato solid;
         }
 `
 
@@ -63,7 +58,6 @@ const DateFilm =styled.h3`
     font-weight: 100;
     white-space: nowrap;
     overflow: hidden;
-    // border: green solid;
 `
 
 
@@ -99,13 +93,11 @@ function Row({title, path}) {
             {movies.length === 0 && <p>Carregando...</p>}
             
             <Carousel
+                // infinite={true}
                 itemsToScroll={3}
                 itemsToShow={5}
-                // enableAutoPlay autoPlaySpeed={2000}
                 itemPadding={[30, 30]}
-                // itemPosition={consts.END} 
                 style={{
-                    // border: "red solid",
                     width: "95vw",
             }}
                 >

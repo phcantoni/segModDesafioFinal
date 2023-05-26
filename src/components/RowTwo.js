@@ -7,7 +7,6 @@ const ConteinerRow = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border: aqua solid;
 `
 
 const MainDiv = styled.div`
@@ -18,7 +17,6 @@ const MainDiv = styled.div`
     align-items: center;
     width: 100%;
     height: 160vh;
-    // border: hotpink solid;
     
 `
 
@@ -27,7 +25,6 @@ const CategTitle = styled.h2`
     align-items: flex-end;
     width: 83vw;
     height: 10vh;
-    // border: red solid;
 `
 
 const DivCards = styled.div`
@@ -38,7 +35,6 @@ const DivCards = styled.div`
     align-items: center;
     height: 141vh;
     overflow: hidden;
-    // border: green solid;
     
         section {
             display: flex;
@@ -47,7 +43,6 @@ const DivCards = styled.div`
             width: 17vw;
             height: 70vh;
             padding-top: 1em;
-            // border: yellow solid;
         }
 
         img {
@@ -67,7 +62,6 @@ const DivCards = styled.div`
             width: 15vw;
             font-size: 12px;
             paddin-top: 1em;
-            // border: tomato solid;
         }
 `
 
@@ -77,7 +71,6 @@ const DateFilm = styled.h3`
     font-weight: 100;
     white-space: nowrap;
     overflow: hidden;
-    // border: green solid;
 `
 
 const DivPages = styled.div`
@@ -87,7 +80,6 @@ const DivPages = styled.div`
             justify-content: space-between;
             align-items: flex-end;
             width: 28vw;
-            // border: blue solid;
         }
 
         li {

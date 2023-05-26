@@ -7,6 +7,7 @@ import HomeFilms from './pages/HomeFilms';
 import Movie from './pages/Movie';
 import SearchFilms from './pages/SearchFilms';
 import HomeSeries from "./pages/HomeSeries";
+import Login from "./pages/Login"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/movie/:id" element={<Movie />}/>
           <Route path="/searchfilms" element={<SearchFilms />}/>
           <Route path="/homeseries" element={<HomeSeries />}/>
+          <Route path="/login" element={<Login />}/>
         </Route>
       </Routes>
     </BrowserRouter>
