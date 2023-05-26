@@ -8,10 +8,10 @@ import backgroundSearch from "../components/assets/backgroundSearch.jpg";
 
 const MainDiv = styled.div`
     width: 100vw;
-    background-image: url(${backgroundSearch});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    // background-image: url(${backgroundSearch});
+    // background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
 
         h1 {
           display: flex;

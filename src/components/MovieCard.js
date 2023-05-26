@@ -10,7 +10,6 @@ const MainDiv = styled.div`
     width: 28vw;
     height: 90vh;
     margin-bottom: 1em;
-    // border: yellow solid;
     
     div {
           display: flex;
@@ -21,15 +20,12 @@ const MainDiv = styled.div`
           padding-top: 0.7em;
           background-color: #111;
           border-radius: 3px;
-          // border: hotpink solid;
         }
 
         img {
           width: 18vw;
           height: 60vh;
           border-radius: 3px;
-          // margin-bottom: 0.5em;
-          // border: blue solid;
         }
 
         section {
@@ -38,25 +34,27 @@ const MainDiv = styled.div`
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          // border: white solid;
 
               div {
                 width: 18vw;
                 height: 10vh;
-                // border: green solid;
               }
         }
 
         h2 {
           width: 18vw;
           font-size: 15px;
-          // border: red solid;
         }
 
         p {
           width: 18vw;
           margin-bottom: 0.5em;
-          // border: aqua solid;
+        }
+
+        span {
+          font-size: 10px;
+          padding-left: 3px;
+          padding-bottom: 1.5px;
         }
 
         .starIcon {
@@ -95,7 +93,7 @@ const MovieCard = ({movie, showLink = true}) => {
           <div>
             <h2>{movie.title}</h2>
             <p>
-              <FaStar className="starIcon"/> {movie.vote_average}
+              <FaStar className="starIcon"/> {movie.vote_average}<span>/10</span>
             </p>
           </div>
           
