@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { getMovies } from "./Tmdb";
 import styled from "styled-components";
 
 
@@ -120,29 +118,14 @@ const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
 function RowTwo({title, path}) {
 
-    const [ movies, setMovies ] = useState ([]);
-
-    const fetchMoviesTwo = async (_path) => {
-        try {
-            const data = await getMovies (_path);
-            console.log(data);
-            setMovies(data?.results);
-        } catch (error) {
-            console.log ("Erro fetchMoviesTwo: ", error);
-        }
-    }
-    
-    useEffect (() => {
-        fetchMoviesTwo(path);
-    }, [path])
 
   return (
     <ConteinerRow className="RowBox">
         <CategTitle className="rowTitle">{title}</CategTitle>
         <MainDiv className="rowCards">
             <DivCards>
-                {movies.length === 0 && <p>Carregando...</p>}
-                {movies?.map((movie) => {
+                {path.length === 0 && <p>Carregando...</p>}
+                {path.results.map((movie) => {
                     return (
                         <section>
                             <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>

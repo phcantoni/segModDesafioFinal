@@ -126,6 +126,12 @@ const Movie = () => {
   }, []);
 
 
+  // let genres = [];
+  //   for(let i in movie.genres) {
+  //       genres.push(movie.genres[i].name);
+  //   }
+
+
   return (
     <MainDiv>
       <div className="tagDivOne">
@@ -150,8 +156,8 @@ const Movie = () => {
                   <p>{formatCurrency(movie.revenue)}</p>
                 </div>
                 <div>
-                  <h3><BsHourglassSplit/> Duração: </h3>
-                  <p>{movie.runtime} minutos</p>
+                  <h3><BsHourglassSplit/> Duração e Data de Lançamento: </h3>
+                  <p>{movie.runtime} minutos | {movie.first_air_date || movie.release_date}</p>
                 </div>
                 <div>
                   <h3><BsFillFileEarmarkTextFill/> Descrição: </h3>

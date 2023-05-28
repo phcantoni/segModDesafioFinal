@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { getMovies } from "./Tmdb";
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 
@@ -14,6 +12,7 @@ const CategTitle = styled.h2`
     align-items: flex-end;
     width: 83vw;
     height: 10vh;
+    // border: blue solid;
 `
 
 const DivCards = styled.div`
@@ -21,7 +20,7 @@ const DivCards = styled.div`
     justify-content: center;
     align-items: center;
     height: 80vh;
-    overflow: hidden;
+    // overflow: hidden;
     
         section {
             display: flex;
@@ -50,6 +49,47 @@ const DivCards = styled.div`
             font-size: 12px;
             paddin-top: 1em;
         }
+
+        .rec.rec-arrow {
+            background: transparent;
+
+            :disabled {
+                visibility: hidden;
+            }
+        }
+
+        .rec.rec-pagination {
+            display: none;
+            // border: blue solid;
+        }
+
+        .rec.rec-dot {
+            // border green solid;
+        }
+
+        .rec.rec-carousel {
+            // border: hotpink solid;
+        }
+
+        .lua {
+            // border: yellow solid;
+        }
+
+        .lua1 {
+            // border: red solid;
+
+            .rec.rec-arrow {
+                // display: none;
+            }
+
+            .rec.rec-carousel {
+                // border: green solid;
+            }
+
+            .rec.rec-item-wrapper {
+                // border: seagreen solid;
+            }
+        }
 `
 
 const DateFilm =styled.h3`
@@ -61,38 +101,19 @@ const DateFilm =styled.h3`
 `
 
 
+
 const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
-function Row({title, path}) {
-
-    const [ movies, setMovies ] = useState ([]);
-
-    const fetchMovies = async (_path) => {
-        try {
-            const data = await getMovies (_path);
-            console.log(data);
-            setMovies(data?.results);
-        } catch (error) {
-            console.log ("Erro fetchMovies: ", error);
-        }
-    }
-    
-    useEffect (() => {
-        fetchMovies(path);
-    }, [path])
-
-
-        // let firstDate = new Date(movies.first_air_date);
-        // let firstDateTwo = new Date(movies.release_date);
+function Row({title, path, isLarge}) {
 
 
   return (
     <ConteinerRow className="RowBox">
         <CategTitle className="rowTitle">{title}</CategTitle>
         <DivCards className="rowCards">
-            {movies.length === 0 && <p>Carregando...</p>}
+            {path.length === 0 && <p>Carregando...</p>}
             
-            <Carousel
+            <Carousel className={`lua ${isLarge && "lua1"}`}
                 // infinite={true}
                 itemsToScroll={3}
                 itemsToShow={5}
@@ -101,13 +122,14 @@ function Row({title, path}) {
                     width: "95vw",
             }}
                 >
-            {movies?.map((movie) => {
+            {path.results.map((movie) => {
                 return (
                     <div>
-                        <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
+                        <><img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
                         <h2>{movie.title || movie.name || movie.original_name}</h2>
                         <DateFilm>{movie.first_air_date || movie.release_date}</DateFilm>
                         {/* <h3>{ firstDate.getFullYear() || firstDateTwo.getFullYear() }</h3> */}
+                        </>
                     </div>
                 );
             })}

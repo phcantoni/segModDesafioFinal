@@ -135,7 +135,7 @@ export default ({item}) => {
                     <h1>{item.original_name || item.title || item.name}</h1>
                     <div>
                         <h3>{item.runtime} Minutos</h3> | 
-                        <h3>{genres.join(", ")} </h3> | 
+                        <h3>{genres.join(", ")}</h3> | 
                         <h3>{firstDate.getFullYear() || firstDateTwo.getFullYear()}</h3>
                     </div>
                     <div>

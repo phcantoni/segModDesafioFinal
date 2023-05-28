@@ -1,9 +1,9 @@
 import Header from "../components/Header";
-import Lists from "../components/Lists"
+import SerieLists from "../components/SerieLists"
 
 
 import React, {useEffect, useState} from "react";
-import TmdbTwo from "../components/TmdbTwo";
+import Tmdb from "../components/Tmdb";
 import MainBannerSeries from "../components/MainBannerSeries";
 
 
@@ -14,12 +14,12 @@ const [featureData, setFeatureData] = useState (null);
 
 useEffect(() => {
   const loadAll = async () => {
-    let list = await TmdbTwo.getHomeList();
+    let list = await Tmdb.getHomeListSeries();
 
     let news = list.filter(i=>i.slug === "news");
     let randomChosen = Math.floor(Math.random() * (news[0].path.results.length - 1));
     let chosen = news[0].path.results[randomChosen];
-    let chosenInfo = await TmdbTwo.getMovieInfo(chosen.id, 'tv');
+    let chosenInfo = await Tmdb.getMovieInfo(chosen.id, 'tv');
     setFeatureData(chosenInfo);
   }
 
@@ -36,7 +36,7 @@ useEffect(() => {
           {featureData &&
           <MainBannerSeries item={featureData} />}
         </section>
-        <Lists />
+        <SerieLists />
     </div>
   )
 }
