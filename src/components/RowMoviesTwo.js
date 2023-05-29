@@ -2,6 +2,7 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import movieTrailer from "movie-trailer";
 import styled from "styled-components";
+import { usePagination } from "react-use-pagination";
 
 
 const ConteinerRow = styled.div`
@@ -81,6 +82,26 @@ const DivPages = styled.div`
             justify-content: space-between;
             align-items: flex-end;
             width: 28vw;
+
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 2.8em;
+                height: 2.8em;
+                color: white;
+                font-size: 18px;
+                list-style: none;
+                background: transparent;
+                border-radius: 50%;
+                border: white solid 1px;
+
+                    :hover {
+                        cursor: pointer;
+                        background-color: rgba(211, 211, 211, 0.3);
+                        transition: 0.3s;
+                    }
+            }
         }
 
         li {
@@ -98,7 +119,7 @@ const DivPages = styled.div`
                 border-radius: 5px;
             }
 
-            :nth-of-type(5) {
+            :nth-of-type(3) {
                 display: flex;
                 align-items: flex-end;
                 width: 1.2em;
@@ -138,13 +159,28 @@ function RowTwo({title, path}) {
     }
 
 
+    // const [postdata, setPostdata] = useState(path.slice(0, 50));
+    // const [pagenumber, setPagenumber] = useState(0);
+    // const perpage = 10;
+    // const pageclick = pagenumber*perpage;
+    // const countpage = Math.ceil(postdata.length/perpage);
+
+    const [itemsPerpage, setItemsPerpage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const pages = Math.ceil(path.results.length / itemsPerpage);
+    const startIndex = currentPage * itemsPerpage;
+    const endIndex = startIndex + itemsPerpage;
+    const currentItems = path.results.slice(startIndex, endIndex);
+
+
   return (
     <ConteinerRow className="RowBox">
         <CategTitle className="rowTitle">{title}</CategTitle>
         <MainDiv className="rowCards">
             <DivCards>
                 {path.length === 0 && <p>Carregando...</p>}
-                {path.results.map((movie) => {
+                {currentItems.map((movie) => {
                     return (
                         <section>
                             <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name} onClick={() => handleOnClick(movie)}></img>
@@ -159,8 +195,9 @@ function RowTwo({title, path}) {
             {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
             <DivPages>
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
+                    {Array.from(Array(pages), (item, index) => {
+                        return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
+                    })}
                     <li>3</li>
                     <li>4</li>
                     <li>...</li>

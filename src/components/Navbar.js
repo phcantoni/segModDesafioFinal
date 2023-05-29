@@ -1,5 +1,6 @@
 import React from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavCateg = styled.nav`
@@ -41,14 +42,14 @@ function Navbar() {
     <div>
         <NavCateg>
             <ul>
-                <li>Popular</li>
-                <li>Drama</li>
-                <li>Ação</li>
-                <li>Aventura</li>
-                <li>Comédia</li>
-                <li>Crime</li>
-                <li>Fantasia</li>
-                <li>Família</li>
+                <Link to="/popular" style={{textDecoration: "none", color: "white"}}><li>Popular</li></Link>
+                <Link to="/drama" style={{textDecoration: "none", color: "white"}}><li>Drama</li></Link>
+                <Link to="/action" style={{textDecoration: "none", color: "white"}}><li>Ação</li></Link>
+                <Link to="/adventure" style={{textDecoration: "none", color: "white"}}><li>Aventura</li></Link>
+                <Link to="/comedy" style={{textDecoration: "none", color: "white"}}><li>Comédia</li></Link>
+                <Link to="/crime" style={{textDecoration: "none", color: "white"}}><li>Crime</li></Link>
+                <Link to="/fantasy" style={{textDecoration: "none", color: "white"}}><li>Fantasia</li></Link>
+                <Link to="/family" style={{textDecoration: "none", color: "white"}}><li>Família</li></Link>
                 <button><BiSearchAlt2 style={{
                   width: "2.5vw",
                   height: "5vh",

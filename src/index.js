@@ -7,7 +7,15 @@ import HomeFilms from './pages/HomeFilms';
 import Movie from './pages/Movie';
 import SearchFilms from './pages/SearchFilms';
 import HomeSeries from "./pages/HomeSeries";
-import Login from "./pages/Login"
+import Login from "./pages/Login";
+import Popular from "./pages/Popular";
+import Drama from "./pages/Drama";
+import Action from "./pages/Action";
+import Adventure from "./pages/Adventure";
+import Comedy from "./pages/Comedy";
+import Crime from "./pages/Crime";
+import Fantasy from "./pages/Fantasy";
+import Family from "./pages/Family";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -19,6 +27,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/searchfilms" element={<SearchFilms />}/>
           <Route path="/homeseries" element={<HomeSeries />}/>
           <Route path="/login" element={<Login />}/>
+          <Route path="/popular" element={<Popular />}/>
+          <Route path="/drama" element={<Drama />}/>
+          <Route path="/action" element={<Action />}/>
+          <Route path="/adventure" element={<Adventure />}/>
+          <Route path="/comedy" element={<Comedy />}/>
+          <Route path="/crime" element={<Crime />}/>
+          <Route path="/fantasy" element={<Fantasy />}/>
+          <Route path="/family" element={<Family />}/>
         </Route>
       </Routes>
     </BrowserRouter>
@@ -33,13 +49,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 //<Route path="serie/:id" element={<Serie />}/> 
-
 //<Route path="searchseries" element={<SearchSeries />}/>
-//<Route path="popular" element={<Popular />}/>
-//<Route path="drama" element={<Drama />}/>
-//<Route path="action" element={<Action />}/>
-//<Route path="adventure" element={<Adventure />}/>
-//<Route path="comedy" element={<Comedy />}/>
-//<Route path="crime" element={<Crime />}/>
-//<Route path="fantasy" element={<Fantasy />}/>
-//<Route path="family" element={<Family />}/>

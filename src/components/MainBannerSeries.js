@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaPlay, FaFilm, FaStar } from "react-icons/fa";
+import ReactPlayer from "react-player";
+import movieTrailer from "movie-trailer";
 
 const MainSection = styled.section`
     width: 100%;
@@ -110,6 +112,22 @@ const MainDiv = styled.div`
 export default ({item}) => {
     console.log(item);
 
+    const [trailerUrl, setTrailerUrl] = useState("");
+
+    const handleOnClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("")
+        } else {
+            movieTrailer(movie.title || movie.name || movie.original_name || "")
+            .then((url) => {
+                setTrailerUrl(url)
+            })
+            .catch((error) => {
+                console.log("Error fetching movie trailer: ", error);
+            })
+        }
+    }
+
     let firstDate = new Date(item.first_air_date);
     let firstDateTwo = new Date(item.release_date);
     let genres = [];
@@ -136,9 +154,10 @@ export default ({item}) => {
                     <h3>{item.number_of_seasons} Temporada{item.number_of_seasons !== 1 ? "s" : ""}</h3>
                 </div>
                 <p>{description}</p>
+                {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
                 <div>
                     <button><FaPlay />Assistir Agora</button>
-                    <button><FaFilm className="trailerIcon"/>Trailer</button>
+                    <button onClick={() => handleOnClick(item)}><FaFilm className="trailerIcon"/>Trailer</button>
                 </div>
                 <h4><strong>Gênero: </strong>{genres.join(", ")} </h4>
             </MainDiv>

@@ -11,6 +11,12 @@ function Lists() {
     const [ movies, setMovies ] = useState ([]);
     const [ moviesTwo, setMoviesTwo ] = useState ([]);
 
+    
+    // const [itemsPerpage, setItemsPerpage] = useState(10);
+    // const [currentPage, setCurrentPage] = useState(0);
+
+    // const pages = Math.ceil(moviesTwo.length / itemsPerpage);
+
     useEffect(() => {
         const loadAll = async () => {
           let list = await Tmdb.getHomeList();
@@ -24,6 +30,7 @@ function Lists() {
         const loadAllTwo = async () => {
         let list = await Tmdb.getHomeListTwo();
         setMoviesTwo(list);
+        console.log("Aqui está: ", loadAllTwo);
     }
 
     loadAllTwo();
@@ -32,6 +39,11 @@ function Lists() {
   return (
     <div>
         <Navbar />
+
+        {/* <div>
+            {pages}
+        </div> */}
+
         {movies.map((item, key) => {
             return (
                 <RowMovies key={key} title={item.title} path={item.path} isLarge={item.isLarge}/>

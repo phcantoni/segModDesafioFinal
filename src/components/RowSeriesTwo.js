@@ -118,6 +118,13 @@ const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
 function RowTwo({title, path}) {
 
+    const [itemsPerpage, setItemsPerpage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const pages = Math.ceil(path.results.length / itemsPerpage);
+    const startIndex = currentPage * itemsPerpage;
+    const endIndex = startIndex + itemsPerpage;
+    const currentItems = path.results.slice(startIndex, endIndex);
 
   return (
     <ConteinerRow className="RowBox">
@@ -125,7 +132,7 @@ function RowTwo({title, path}) {
         <MainDiv className="rowCards">
             <DivCards>
                 {path.length === 0 && <p>Carregando...</p>}
-                {path.results.map((movie) => {
+                {currentItems.map((movie) => {
                     return (
                         <section>
                             <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
@@ -139,8 +146,9 @@ function RowTwo({title, path}) {
             </DivCards>
             <DivPages>
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
+                    {Array.from(Array(pages), (item, index) => {
+                        return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
+                    })}
                     <li>3</li>
                     <li>4</li>
                     <li>...</li>
