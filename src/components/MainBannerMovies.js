@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaPlay, FaFilm, FaStar } from "react-icons/fa";
 import Imdb from "./assets/Imdb.png";
+import ReactPlayer from "react-player";
+import movieTrailer from "movie-trailer";
 
 
     
@@ -111,6 +113,19 @@ const MainDiv = styled.div`
             width: 1.5vw;
             height: 3vh;
         }
+
+        .loading {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 `
 
 export default ({item}) => {
@@ -122,6 +137,27 @@ export default ({item}) => {
     let genres = [];
     for(let i in item.genres) {
         genres.push(item.genres[i].name);
+    }
+
+    const [trailerUrl, setTrailerUrl] = useState("");
+
+    const handleOnClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("")
+        } else {
+            movieTrailer(movie.title || movie.name || movie.original_name || "")
+            .then((url) => {
+                setTrailerUrl(url)
+            })
+            .catch((error) => {
+                console.log("Error fetching movie trailer: ", error);
+            })
+        }
+    }
+
+    let description = item.overview;
+    if (description.length > 200) {
+        description = description.substring(0, 500)+"..."
     }
 
     return (
@@ -141,12 +177,18 @@ export default ({item}) => {
                     <div>
                         <FaStar className="starIcon"/> <h4>{item.vote_average}<span>/10</span></h4> <img src={Imdb} alt="Logo Imdb"/>
                     </div>
-                    <p>{item.overview}</p>
+                    <p>{description}</p>
+                    {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
                     <div>
                         <button> <FaPlay /> Assistir Agora </button>
-                        <button> <FaFilm className="trailerIcon"/> Trailer </button>
+                        <button onClick={() => handleOnClick(item)}> <FaFilm className="trailerIcon"/> Trailer </button>
                     </div>
                 </section>
+                {item.length <= 0 &&
+                <div className="loading">
+                    <img src="https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2560%2Cc_limit/Netflix_LoadTime.gif" />
+                </div>
+                }
             </MainDiv>
         </MainSection>
     );

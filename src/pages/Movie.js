@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { BsGraphUp, BsWallet2, BsHourglassSplit, BsFillFileEarmarkTextFill } from "react-icons/bs";
 import { FaPlay, FaFilm } from "react-icons/fa";
 import MovieCard from "../components/MovieCard";
+import ReactPlayer from "react-player";
+import movieTrailer from "movie-trailer";
 
 const MainDiv = styled.div`
     width: 100%;
@@ -51,6 +53,7 @@ const TagSection = styled.section`
 
           .tagDivTwo .lastP {
             height: 30vh;
+            overflow: hidden;
           }
 
           .tagDivTwo button {
@@ -126,10 +129,30 @@ const Movie = () => {
   }, []);
 
 
+  const [trailerUrl, setTrailerUrl] = useState("");
+
+    const handleOnClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("")
+        } else {
+            movieTrailer(movie.title || movie.name || movie.original_name || "")
+            .then((url) => {
+                setTrailerUrl(url)
+            })
+            .catch((error) => {
+                console.log("Error fetching movie trailer: ", error);
+            })
+        }
+    };
   // let genres = [];
   //   for(let i in movie.genres) {
   //       genres.push(movie.genres[i].name);
   //   }
+
+  // let description = movie.overview;
+  //   if (description.length > 200) {
+  //       description = description.substring(0, 500)+"..."
+  //   };
 
 
   return (
@@ -165,9 +188,10 @@ const Movie = () => {
                 </div>
                 <div>
                   <button> <FaPlay /> Assistir Agora </button>
-                  <button> <FaFilm className="trailerIcon"/> Trailer </button>
+                  <button onClick={() => handleOnClick(movie)}> <FaFilm className="trailerIcon"/> Trailer </button>
                 </div>
               </div>
+            {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
             </TagSectionDiv>
           </TagSection>
         )}

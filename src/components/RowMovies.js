@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
+import ReactPlayer from "react-player";
+import { useState } from "react";
+import movieTrailer from "movie-trailer";
 
 const ConteinerRow = styled.div`
     display: flex;
@@ -106,6 +109,21 @@ const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
 function Row({title, path, isLarge}) {
 
+    const [trailerUrl, setTrailerUrl] = useState("");
+
+    const handleOnClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("")
+        } else {
+            movieTrailer(movie.title || movie.name || movie.original_name || "")
+            .then((url) => {
+                setTrailerUrl(url)
+            })
+            .catch((error) => {
+                console.log("Error fetching movie trailer: ", error);
+            })
+        }
+    }
 
   return (
     <ConteinerRow className="RowBox">
@@ -125,7 +143,9 @@ function Row({title, path, isLarge}) {
             {path.results.map((movie) => {
                 return (
                     <div>
-                        <><img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
+                        <><img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name} 
+                        onClick={() => handleOnClick(movie)}
+                        ></img>
                         <h2>{movie.title || movie.name || movie.original_name}</h2>
                         <DateFilm>{movie.first_air_date || movie.release_date}</DateFilm>
                         {/* <h3>{ firstDate.getFullYear() || firstDateTwo.getFullYear() }</h3> */}
@@ -135,6 +155,7 @@ function Row({title, path, isLarge}) {
             })}
             </Carousel>    
         </DivCards>
+        {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
     </ConteinerRow>
   )
 }

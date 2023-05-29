@@ -117,6 +117,11 @@ export default ({item}) => {
         genres.push(item.genres[i].name);
     }
 
+    let description = item.overview;
+    if (description.length > 200) {
+        description = description.substring(0, 500)+"..."
+    }
+
     return (
         <MainSection style={{
             backgroundSize: "cover",
@@ -130,7 +135,7 @@ export default ({item}) => {
                     <h3>{firstDate.getFullYear() || firstDateTwo.getFullYear()}</h3>
                     <h3>{item.number_of_seasons} Temporada{item.number_of_seasons !== 1 ? "s" : ""}</h3>
                 </div>
-                <p>{item.overview}</p>
+                <p>{description}</p>
                 <div>
                     <button><FaPlay />Assistir Agora</button>
                     <button><FaFilm className="trailerIcon"/>Trailer</button>

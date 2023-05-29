@@ -1,3 +1,6 @@
+import { useState } from "react";
+import ReactPlayer from "react-player";
+import movieTrailer from "movie-trailer";
 import styled from "styled-components";
 
 
@@ -118,6 +121,22 @@ const baseUrlImage = "https://image.tmdb.org/t/p/original/";
 
 function RowTwo({title, path}) {
 
+    const [trailerUrl, setTrailerUrl] = useState("");
+
+    const handleOnClick = (movie) => {
+        if (trailerUrl) {
+            setTrailerUrl("")
+        } else {
+            movieTrailer(movie.title || movie.name || movie.original_name || "")
+            .then((url) => {
+                setTrailerUrl(url)
+            })
+            .catch((error) => {
+                console.log("Error fetching movie trailer: ", error);
+            })
+        }
+    }
+
 
   return (
     <ConteinerRow className="RowBox">
@@ -128,7 +147,7 @@ function RowTwo({title, path}) {
                 {path.results.map((movie) => {
                     return (
                         <section>
-                            <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name}></img>
+                            <img key={movie.id} src={`${baseUrlImage}${movie.poster_path}`} alt={movie.name} onClick={() => handleOnClick(movie)}></img>
                             <div>
                                 <h2>{movie.title || movie.name || movie.original_name}</h2>
                                 <DateFilm>{movie.first_air_date || movie.release_date}</DateFilm>
@@ -137,6 +156,7 @@ function RowTwo({title, path}) {
                     );
                 })}
             </DivCards>
+            {trailerUrl && <ReactPlayer url={trailerUrl} playing={true}/>}
             <DivPages>
                 <ul>
                     <li>1</li>

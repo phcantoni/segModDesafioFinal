@@ -95,10 +95,10 @@ const MovieCard = ({movie, showLink = true}) => {
     // let firstDate = new Date(item.first_air_date);
     // let firstDateTwo = new Date(item.release_date);
 
-    let genres = [];
-    for(let i in movie.genres) {
-        genres.push(movie.genres[i].name);
-    }
+    // let genres = [];
+    // for(let i in movie.genres) {
+    //     genres.push(movie.genres[i].name);
+    // }
 
   return (
     <MainDiv>
@@ -110,7 +110,7 @@ const MovieCard = ({movie, showLink = true}) => {
             <p>
               <FaStar className="starIcon"/> {movie.vote_average}<span>/10</span>
             </p>
-            <p className="genres">{genres.join(", ")}</p>
+            {/* <p className="genres">{genres.join(", ")}</p> */}
           </div>
           
             {showLink && <Link to={`/movie/${movie.id}`} style={{
